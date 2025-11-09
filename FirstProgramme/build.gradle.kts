@@ -45,7 +45,7 @@ tasks.register<JavaExec>("recordTest") {
     group = "playwright"
     classpath = sourceSets["test"].runtimeClasspath
     mainClass.set("com.microsoft.playwright.CLI")
-    args("codegen", "https://internxt.com/ru/temporary-email")
+    args("codegen", "https://dev.app.nude.web.ghfls.ru/dating")
 }
 
 // Make test depend on browser installation

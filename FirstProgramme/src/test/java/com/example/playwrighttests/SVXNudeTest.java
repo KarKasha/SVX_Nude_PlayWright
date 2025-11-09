@@ -390,4 +390,34 @@ public class SVXNudeTest {
 
         }
     }
+
+
+    @Test
+    // ТК-3
+    public void checkEditProfile() {
+        try (Playwright playwright = Playwright.create()) {
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                    .setHeadless(false));
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            page.navigate("https://dev.app.nude.web.ghfls.ru/dating");
+            page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Войти")).click();
+            page.getByPlaceholder("Введите email").click();
+            page.getByPlaceholder("Введите email").fill("316th@2200freefonts.com");
+            page.getByPlaceholder("Введите пароль").click();
+            page.getByLabel("Переключить видимость пароля").click();
+            page.getByPlaceholder("Введите пароль").click();
+            page.getByPlaceholder("Введите пароль").fill("Qwe35ewQ@");
+            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Войти")).click();
+            page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Aватар Профиль")).click();
+            page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Aватар Профиль")).click();
+            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Редактировать профиль")).click();
+            page.getByLabel("О себе").click();
+            page.waitForTimeout(10000);
+            page.getByLabel("О себе").fill("Люблю поэзию и собак");
+            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Сохранить")).click();
+        }
+
+    }
+
 }
